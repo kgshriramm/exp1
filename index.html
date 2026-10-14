@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fbfaf6" />
+    <title>Pay One Rupee — A curiosity experiment</title>
+    <meta name="description" content="Pay ₹1 to uncover the number of people who joined this curiosity experiment." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <nav class="nav shell" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="Pay One Rupee home">pay<span>₹</span>one</a>
+        <span class="nav-note">a tiny curiosity experiment</span>
+      </nav>
+
+      <section class="hero shell" id="top">
+        <p class="eyebrow"><span></span> A curiosity experiment · ₹1 only</p>
+        <h1>How many people<br /><em>paid one rupee?</em></h1>
+        <p class="intro">One rupee unlocks one oddly satisfying answer. No prize. No pitch. Just the number.</p>
+        <button class="pay-button" data-open-payment>
+          <span>Pay ₹1 to find out</span><b>→</b>
+        </button>
+        <p class="microcopy">Pay securely with any UPI app</p>
+        <div class="question-mark" aria-hidden="true">?</div>
+      </section>
+
+      <section class="how shell" aria-labelledby="how-title">
+        <div class="section-heading">
+          <p class="eyebrow">The whole thing</p>
+          <h2 id="how-title">As simple as it sounds.</h2>
+        </div>
+        <div class="steps">
+          <article><span>01</span><h3>Pay one rupee</h3><p>Use GPay, PhonePe, Paytm, or any UPI app you trust.</p></article>
+          <article><span>02</span><h3>Your payment is checked</h3><p>We only unlock the answer after a successful payment confirmation.</p></article>
+          <article><span>03</span><h3>See the count</h3><p>Find out how many curious people were here before you.</p></article>
+        </div>
+      </section>
+
+      <section class="curiosity shell">
+        <p>Curiosity is a strange little thing.</p>
+        <h2>You made it this far.<br />Might as well <em>know.</em></h2>
+        <button class="text-button" data-open-payment>Unlock the number <span>→</span></button>
+      </section>
+    </main>
+
+    <footer class="footer shell">
+      <a class="brand" href="#top">pay<span>₹</span>one</a>
+      <p>Independent social experiment. Participation is optional.</p>
+      <button class="footer-link" data-open-legal>Terms, privacy &amp; experiment notice</button>
+    </footer>
+
+    <dialog class="payment-dialog" id="payment-dialog" aria-labelledby="payment-title">
+      <button class="close" data-close-dialog aria-label="Close">×</button>
+      <p class="eyebrow">One last tiny step</p>
+      <h2 id="payment-title">Choose your UPI app</h2>
+      <p class="dialog-copy">You’ll pay <strong>₹1.00</strong> to StyleSync through your preferred UPI app.</p>
+      <a class="upi-button" id="upi-link" href="upi://pay?ver=01&amp;mode=19&amp;pa=stylesync350683.rzp@icici&amp;pn=StyleSync&amp;tr=RZPPpz69WFCax1KTyqrv2&amp;cu=INR&amp;mc=7311&amp;qrMedium=04&amp;tn=PaymenttoStyleSync&amp;am=1.00">
+        Open UPI app <span>→</span>
+      </a>
+      <p class="upi-help">Works on a phone with a UPI app installed. The merchant name shown in your app should be “StyleSync”.</p>
+      <div class="verification-note" id="verification-note" hidden>
+        <strong>Checking payment…</strong>
+        <p>Please wait while we confirm it securely.</p>
+      </div>
+      <p class="dialog-terms">This is voluntary entertainment: your ₹1 only unlocks the count, and does not buy a product, prize, investment, or chance to win. By continuing, you agree to the experiment notice.</p>
+    </dialog>
+
+    <dialog class="legal-dialog" id="legal-dialog" aria-labelledby="legal-title">
+      <button class="close" data-close-legal aria-label="Close">×</button>
+      <p class="eyebrow">Please read</p>
+      <h2 id="legal-title">Experiment notice</h2>
+      <div class="legal-copy">
+        <p>This is a voluntary, entertainment-only social experiment. Payment is ₹1 only; it does not buy a product, investment, chance to win, or guaranteed outcome other than access to the participant count after payment is confirmed.</p>
+        <p>Payments are processed by your selected UPI provider. Do not share your UPI PIN, OTP, or bank details with this website. We do not collect those credentials.</p>
+        <p>Before publishing, add the operator’s legal name, customer-support email, refund/cancellation policy, privacy notice, and the correct merchant name. The merchant name shown at payment must match the site operator.</p>
+      </div>
+    </dialog>
+
+    <dialog class="result-dialog" id="result-dialog" aria-labelledby="result-title">
+      <button class="close" data-close-result aria-label="Close">×</button>
+      <p class="eyebrow">You’re in</p>
+      <h2 id="result-title">The answer is…</h2>
+      <div class="count"><span id="paid-count">1,000</span><small>people paid before you</small></div>
+      <p class="dialog-copy">Thanks for satisfying your curiosity.</p>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>

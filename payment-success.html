@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fbfaf6" />
+    <title>Checking payment — Pay One Rupee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="success-page shell">
+      <a class="brand" href="/">pay<span>₹</span>one</a>
+      <section id="checking">
+        <p class="eyebrow"><span></span> Secure confirmation</p>
+        <h1>Checking your<br /><em>payment.</em></h1>
+        <p class="intro">Just a moment while we confirm the ₹1 payment with Razorpay.</p>
+      </section>
+      <section id="success" hidden>
+        <p class="eyebrow"><span></span> You’re in</p>
+        <h1>The answer<br />is <em>here.</em></h1>
+        <div class="count"><span id="paid-count">1,000</span><small>people paid before you</small></div>
+        <a class="pay-button back-home" href="/"><span>Back to the experiment</span><b>→</b></a>
+      </section>
+      <section id="failure" hidden>
+        <p class="eyebrow">Could not verify</p>
+        <h1>We couldn’t confirm<br /><em>that payment.</em></h1>
+        <p class="intro" id="failure-message">If your payment went through, please contact support with your Razorpay payment ID.</p>
+        <a class="text-button" href="/">Return home <span>→</span></a>
+      </section>
+    </main>
+    <script>
+      (async () => {
+        const id = new URLSearchParams(location.search).get('razorpay_payment_link_id');
+        const checking = document.querySelector('#checking');
+        const failed = (message) => {
+          checking.hidden = true;
+          document.querySelector('#failure').hidden = false;
+          if (message) document.querySelector('#failure-message').textContent = message;
+        };
+        if (!id) return failed('No payment reference was returned. Please return home and try again.');
+        try {
+          const response = await fetch('/api/verify-payment', {
+            method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ paymentLinkId: id })
+          });
+          const result = await response.json();
+          if (!response.ok || !result.verified) return failed(result.message);
+          checking.hidden = true;
+          document.querySelector('#paid-count').textContent = result.count.toLocaleString('en-IN');
+          document.querySelector('#success').hidden = false;
+        } catch (_) { failed('The verification service is unavailable. Please try again shortly.'); }
+      })();
+    </script>
+  </body>
+</html>
