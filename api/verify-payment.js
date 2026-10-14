@@ -24,6 +24,7 @@ module.exports = async (request, response) => {
     const count = await redis(['EVAL', recordPayment, 2, `payone:payment:${payment.payment_id}`, 'payone:count', 1000]);
     return json(response, 200, { verified: true, count: Number(count) });
   } catch (error) {
-    return json(response, 503, { verified: false, message: error.message });
+    console.error('Payment verification failed:', error);
+    return json(response, 503, { verified: false, message: 'Payment verification is temporarily unavailable. Please try again shortly.' });
   }
 };

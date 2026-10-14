@@ -57,16 +57,13 @@
     <dialog class="payment-dialog" id="payment-dialog" aria-labelledby="payment-title">
       <button class="close" data-close-dialog aria-label="Close">×</button>
       <p class="eyebrow">One last tiny step</p>
-      <h2 id="payment-title">Choose your UPI app</h2>
-      <p class="dialog-copy">You’ll pay <strong>₹1.00</strong> to StyleSync through your preferred UPI app.</p>
-      <a class="upi-button" id="upi-link" href="upi://pay?ver=01&amp;mode=19&amp;pa=stylesync350683.rzp@icici&amp;pn=StyleSync&amp;tr=RZPPpz69WFCax1KTyqrv2&amp;cu=INR&amp;mc=7311&amp;qrMedium=04&amp;tn=PaymenttoStyleSync&amp;am=1.00">
-        Open UPI app <span>→</span>
-      </a>
-      <p class="upi-help">Works on a phone with a UPI app installed. The merchant name shown in your app should be “StyleSync”.</p>
-      <div class="verification-note" id="verification-note" hidden>
-        <strong>Checking payment…</strong>
-        <p>Please wait while we confirm it securely.</p>
-      </div>
+      <h2 id="payment-title">Continue to payment</h2>
+      <p class="dialog-copy">You’ll pay <strong>₹1.00</strong> on Razorpay’s secure checkout page, where available payment methods are shown.</p>
+      <button class="upi-button" id="create-payment-link" type="button">
+        Open secure checkout <span>→</span>
+      </button>
+      <p class="upi-help">After payment, we’ll verify it with Razorpay before revealing the count. Never share your UPI PIN or OTP with this website.</p>
+      <p class="verification-note" id="checkout-status" role="status" aria-live="polite" hidden></p>
       <p class="dialog-terms">This is voluntary entertainment: your ₹1 only unlocks the count, and does not buy a product, prize, investment, or chance to win. By continuing, you agree to the experiment notice.</p>
     </dialog>
 

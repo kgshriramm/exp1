@@ -16,6 +16,7 @@ module.exports = async (request, response) => {
     });
     return json(response, 201, { paymentUrl: link.short_url });
   } catch (error) {
-    return json(response, 503, { message: error.message });
+    console.error('Payment link creation failed:', error);
+    return json(response, 503, { message: 'Secure checkout is temporarily unavailable. Please try again shortly.' });
   }
 };
